@@ -1,5 +1,5 @@
 // cd && cd qmk_firmware/ && make xelaco/niu_mini:xelaco:dfu
-// 2021 02 27
+// 2021 04 12
 
 #include QMK_KEYBOARD_H
 

@@ -1,5 +1,5 @@
 // cd && cd qmk_firmware/ && make xelaco/nanoslider:xelaco:dfu
-// 2021 02 27
+// 2021 04 12
 
 #include "kb.h"
 #include "analog.h"
