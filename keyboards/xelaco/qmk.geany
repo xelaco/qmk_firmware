@@ -28,16 +28,16 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=8
+current_page=0
 FILE_NAME_0=82;C;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fpegasushoof%2Fkeymaps%2Fxelaco%2Fkeymap.c;0;4
 FILE_NAME_1=0;Make;0;EUTF-8;1;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fpegasushoof%2Frules.mk;0;4
 FILE_NAME_2=971;C++;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fpegasushoof%2Fconfig.h;0;4
 FILE_NAME_3=34;C;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fnanoslider%2Fkeymaps%2Fxelaco%2Fkeymap.c;0;4
 FILE_NAME_4=0;Make;0;EUTF-8;1;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fnanoslider%2Frules.mk;0;4
 FILE_NAME_5=237;C++;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fnanoslider%2Fconfig.h;0;4
-FILE_NAME_6=1462;C;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fniu_mini%2Fkeymaps%2Fxelaco%2Fkeymap.c;0;4
+FILE_NAME_6=358;C;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fniu_mini%2Fkeymaps%2Fxelaco%2Fkeymap.c;0;4
 FILE_NAME_7=0;Make;0;EUTF-8;1;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fniu_mini%2Frules.mk;0;4
-FILE_NAME_8=941;C++;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fniu_mini%2Fconfig.h;0;4
+FILE_NAME_8=1336;C++;0;EUTF-8;0;1;0;%2Fhome%2Fx%2Fqmk_firmware%2Fkeyboards%2Fxelaco%2Fniu_mini%2Fconfig.h;0;4
 
 [VTE]
 last_dir=/home/x

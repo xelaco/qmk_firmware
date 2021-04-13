@@ -41,6 +41,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case XC_SPAC:
+            return TAPPING_TERM + 5800;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case XC_SPAC:
+            return true;
+        default:
+            return false;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
     switch(keycode){
         case XRGBTOG:
