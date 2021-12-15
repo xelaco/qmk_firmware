@@ -1,5 +1,5 @@
 // cd && cd qmk_firmware/ && qmk flash -kb xelaco/pegasushoof -km xelaco
-// 2021 04 12
+// 2021 12 15
 
 #include QMK_KEYBOARD_H
 
