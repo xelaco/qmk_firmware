@@ -1,4 +1,4 @@
-// cd && cd qmk_firmware/ && sudo make xelaco/pegasushoof:xelaco:dfu
+// cd && cd qmk_firmware/ && qmk flash -kb xelaco/pegasushoof -km xelaco
 // 2021 04 12
 
 #include QMK_KEYBOARD_H
@@ -390,3 +390,4 @@ void atk_computer(void)
     }
     return;
 }
+

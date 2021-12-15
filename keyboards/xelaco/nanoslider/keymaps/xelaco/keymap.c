@@ -1,4 +1,4 @@
-// cd && cd qmk_firmware/ && sudo make xelaco/nanoslider:xelaco:dfu
+// cd && cd qmk_firmware/ && qmk flash -kb xelaco/niu_mini -km xelaco
 // 2021 04 12
 
 #include "kb.h"
@@ -176,3 +176,4 @@ void play_next_choice(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [XEL_PLAY_NEXT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, play_next_choice, NULL),
 };
+

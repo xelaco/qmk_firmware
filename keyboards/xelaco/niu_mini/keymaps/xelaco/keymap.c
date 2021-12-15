@@ -1,4 +1,4 @@
-// cd && cd qmk_firmware/ && sudo make xelaco/niu_mini:xelaco:dfu
+// cd && cd qmk_firmware/ && qmk flash -kb xelaco/niu_mini -km xelaco
 // 2021 04 13
 
 #include QMK_KEYBOARD_H
@@ -148,3 +148,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
     }
     return true;
 };
+
