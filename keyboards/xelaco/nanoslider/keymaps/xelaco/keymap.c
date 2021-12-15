@@ -1,5 +1,5 @@
 // cd && cd qmk_firmware/ && qmk flash -kb xelaco/nanoslider -km xelaco
-// 2021 04 12
+// 2021 12 15
 
 #include "kb.h"
 #include "analog.h"
@@ -15,11 +15,13 @@ uint16_t slider_timer = 0;
 int xel_rgb_state = 0; // To change mode: RGB off, plain, swirl
 uint16_t xel_rgb_timer = 0;
 
-enum custom_keycodes{
+enum custom_keycodes
+{
   ALT_TAB = SAFE_RANGE, CTRL_TAB, XEL_RGB
 };
 
-enum{
+enum
+{
   XEL_PLAY_NEXT
 };
 
@@ -55,46 +57,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RESET)
 };
 
-void keyboard_post_init_user(void) {
+void keyboard_post_init_user(void)
+{
   prev_pos = analogReadPin(SLIDER_PIN);
   rgblight_disable_noeeprom();
   xel_rgb_state = 0;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch(keycode) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record)
+{
+  switch(keycode)
+  {
     case ALT_TAB:
-      if(record->event.pressed) {
-        if(!alt_tab_state) {
+      if(record->event.pressed)
+      {
+        if(!alt_tab_state)
+        {
           alt_tab_state = true;
           register_code(KC_LALT);
         }
         alt_tab_timer = timer_read();
         register_code(KC_TAB);
       }
-      else{
+      else
         unregister_code(KC_TAB);
-      }
       break;
     case CTRL_TAB:
-      if(record->event.pressed) {
-        if(!ctrl_tab_state) {
+      if(record->event.pressed)
+      {
+        if(!ctrl_tab_state)
+        {
           ctrl_tab_state = true;
           register_code(KC_LCTL);
         }
         ctrl_tab_timer = timer_read();
         register_code(KC_TAB);
       }
-      else{
+      else
         unregister_code(KC_TAB);
-      }
       break;
     case XEL_RGB:
-      if(timer_elapsed(xel_rgb_timer) < 500) {
+      if(timer_elapsed(xel_rgb_timer) < 500)
         break;
-      }
       xel_rgb_timer = timer_read();
-      switch(xel_rgb_state) {
+      switch(xel_rgb_state)
+      {
         case 0:
           rgblight_enable_noeeprom();
           rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
@@ -115,57 +122,63 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-void rgb_slider(void) {
-  if(timer_elapsed(slider_timer) < 1000) {
+void rgb_slider(void)
+{
+  if(timer_elapsed(slider_timer) < 1000)
     return;
-  }
-  if(abs(prev_pos - analogReadPin(SLIDER_PIN)) > 16) {
+  if(abs(prev_pos - analogReadPin(SLIDER_PIN)) > 16)
+  {
     prev_pos = analogReadPin(SLIDER_PIN);
     rgblight_sethsv_noeeprom(prev_pos / 4, rgblight_get_sat(), rgblight_get_val());
     slider_timer = timer_read();
   }
 }
 
-void zoom_slider(void) {
-  if(timer_elapsed(slider_timer) < 1000) {
+void zoom_slider(void)
+{
+  if(timer_elapsed(slider_timer) < 1000)
     return;
-  }
-  if(abs(prev_pos - analogReadPin(SLIDER_PIN)) > 100) {
+  if(abs(prev_pos - analogReadPin(SLIDER_PIN)) > 100)
+  {
     prev_pos = analogReadPin(SLIDER_PIN);
     //char str[10];
     //sprintf(str, "%d\n", (int)sqrt(prev_pos)*6/32);
     //send_string(str);
     SEND_STRING(SS_LCTRL("0"));
-    for(int i = 0; i < (int)sqrt(prev_pos) * 6 / 32; i++) {
+    for(int i = 0; i < (int)sqrt(prev_pos) * 6 / 32; i++)
       SEND_STRING(SS_LCTRL("+"));
-    }
     slider_timer = timer_read();
   }
 }
 
-void matrix_scan_user(void) {
-  if(alt_tab_state) {
-    if(timer_elapsed(alt_tab_timer) > 1000) {
+void matrix_scan_user(void)
+{
+  if(alt_tab_state)
+  {
+    if(timer_elapsed(alt_tab_timer) > 1000)
+    {
       unregister_code(KC_LALT);
       alt_tab_state = false;
     }
   }
-  if(ctrl_tab_state) {
-    if(timer_elapsed(ctrl_tab_timer) > 1000) {
+  if(ctrl_tab_state)
+  {
+    if(timer_elapsed(ctrl_tab_timer) > 1000)
+    {
       unregister_code(KC_LCTL);
       ctrl_tab_state = false;
     }
   }
-  if(layer_state == 2) {    // Layer 1
+  if(layer_state == 2)    // Layer 1
     rgb_slider();
-  }
-  else{
+  else
     zoom_slider();
-  }
 }
 
-void play_next_choice(qk_tap_dance_state_t *state, void *user_data) {
-  switch(state->count) {
+void play_next_choice(qk_tap_dance_state_t *state, void *user_data)
+{
+  switch(state->count)
+  {
     case 1:
       tap_code(KC_MEDIA_PLAY_PAUSE);
       break;
