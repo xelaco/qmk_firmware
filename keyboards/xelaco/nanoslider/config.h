@@ -9,7 +9,7 @@
 #define DEVICE_VER 0x0001
 #define MANUFACTURER keebwerk.
 #define PRODUCT nano. slider
-#define DESCRIPTION xel 27_02_2021
+#define DESCRIPTION Powered by qmk
 
 /* key matrix size */
 #define MATRIX_ROWS 2

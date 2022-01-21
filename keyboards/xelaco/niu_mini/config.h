@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    KBDFans
 #define PRODUCT         NIU Mini
-#define DESCRIPTION     xel 13_04_2021
+#define DESCRIPTION     Powered by qmk
 
 /* key matrix size */
 #define MATRIX_ROWS 4

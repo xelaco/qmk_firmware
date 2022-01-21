@@ -23,6 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER      0x0104
 #define MANUFACTURER    Filco
 #define PRODUCT         Majestouch TKL \\w The Pegasus Hoof 2015
-#define DESCRIPTION xel 12_04_2021
+#define DESCRIPTION     Powered by qmk
 
 #include "config_common.h"
