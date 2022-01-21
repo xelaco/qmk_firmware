@@ -33,7 +33,7 @@ enum
    |             |8| |
    | [2] [3] [4]  -  |
    \=================/
-*/
+   */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KEYMAP(
