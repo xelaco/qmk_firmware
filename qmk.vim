@@ -113,7 +113,7 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 132 + 77) / 154)
 exe '2resize ' . ((&lines * 15 + 15) / 31)
 exe 'vert 2resize ' . ((&columns * 21 + 77) / 154)
-exe '3resize ' . ((&lines * 13 + 15) / 31)
+exe '3resize ' . ((&lines * 12 + 15) / 31)
 exe 'vert 3resize ' . ((&columns * 21 + 77) / 154)
 argglobal
 balt keyboards/xelaco/pegasushoof/keymaps/xelaco
@@ -271,8 +271,22 @@ normal! zo
 normal! zo
 93
 normal! zo
-93
+94
+normal! zo
+98
+normal! zo
+102
+normal! zo
+102
 normal! zc
+134
+normal! zo
+134
+normal! zc
+225
+normal! zo
+229
+normal! zo
 319
 normal! zo
 322
@@ -313,12 +327,12 @@ normal! zo
 normal! zo
 387
 normal! zo
-let s:l = 37 - ((4 * winheight(0) + 14) / 29)
+let s:l = 232 - ((89 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 37
-normal! 0
+keepjumps 232
+normal! 017|
 wincmd w
 argglobal
 if bufexists("keyboards/xelaco/pegasushoof/config.h") | buffer keyboards/xelaco/pegasushoof/config.h | else | edit keyboards/xelaco/pegasushoof/config.h | endif
@@ -582,7 +596,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 9 - ((0 * winheight(0) + 6) / 13)
+let s:l = 9 - ((0 * winheight(0) + 6) / 12)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -593,7 +607,7 @@ wincmd w
 exe 'vert 1resize ' . ((&columns * 132 + 77) / 154)
 exe '2resize ' . ((&lines * 15 + 15) / 31)
 exe 'vert 2resize ' . ((&columns * 21 + 77) / 154)
-exe '3resize ' . ((&lines * 13 + 15) / 31)
+exe '3resize ' . ((&lines * 12 + 15) / 31)
 exe 'vert 3resize ' . ((&columns * 21 + 77) / 154)
 tabnext
 edit ~/qmk_firmware/keyboards/xelaco/nanoslider/keymaps/xelaco/keymap.c
@@ -1051,9 +1065,9 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 133 + 77) / 154)
-exe '2resize ' . ((&lines * 15 + 15) / 31)
+exe '2resize ' . ((&lines * 16 + 15) / 31)
 exe 'vert 2resize ' . ((&columns * 20 + 77) / 154)
-exe '3resize ' . ((&lines * 12 + 15) / 31)
+exe '3resize ' . ((&lines * 11 + 15) / 31)
 exe 'vert 3resize ' . ((&columns * 20 + 77) / 154)
 argglobal
 balt ~/qmk_firmware/keyboards/xelaco/niu_mini/keymaps/xelaco
@@ -1237,46 +1251,54 @@ normal! zo
 normal! zo
 93
 normal! zo
-95
+94
+normal! zo
+97
 normal! zo
 98
 normal! zo
-104
+101
 normal! zo
-110
+103
+normal! zo
+106
 normal! zo
 112
 normal! zo
-117
+118
 normal! zo
-122
+120
 normal! zo
-124
-normal! zo
-126
+125
 normal! zo
 130
 normal! zo
-133
+132
 normal! zo
-139
+134
+normal! zo
+138
 normal! zo
 141
 normal! zo
-143
+147
 normal! zo
-148
+149
 normal! zo
 151
 normal! zo
-154
+156
 normal! zo
-let s:l = 24 - ((5 * winheight(0) + 14) / 28)
+159
+normal! zo
+162
+normal! zo
+let s:l = 74 - ((9 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 24
-normal! 0
+keepjumps 74
+normal! 029|
 wincmd w
 argglobal
 if bufexists("~/qmk_firmware/keyboards/xelaco/niu_mini/config.h") | buffer ~/qmk_firmware/keyboards/xelaco/niu_mini/config.h | else | edit ~/qmk_firmware/keyboards/xelaco/niu_mini/config.h | endif
@@ -1405,7 +1427,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 61 - ((3 * winheight(0) + 7) / 15)
+let s:l = 61 - ((3 * winheight(0) + 8) / 16)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -1540,7 +1562,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 8 - ((3 * winheight(0) + 6) / 12)
+let s:l = 8 - ((3 * winheight(0) + 5) / 11)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -1549,15 +1571,15 @@ normal! 0
 lcd ~/qmk_firmware/keyboards/xelaco/niu_mini/keymaps/xelaco
 wincmd w
 exe 'vert 1resize ' . ((&columns * 133 + 77) / 154)
-exe '2resize ' . ((&lines * 15 + 15) / 31)
+exe '2resize ' . ((&lines * 16 + 15) / 31)
 exe 'vert 2resize ' . ((&columns * 20 + 77) / 154)
-exe '3resize ' . ((&lines * 12 + 15) / 31)
+exe '3resize ' . ((&lines * 11 + 15) / 31)
 exe 'vert 3resize ' . ((&columns * 20 + 77) / 154)
 tabnext 3
 set stal=1
 badd +1 ~/qmk_firmware/keyboards/xelaco/pegasushoof/keymaps/xelaco/keymap.c
 badd +1 ~/qmk_firmware/keyboards/xelaco/nanoslider/keymaps/xelaco/keymap.c
-badd +51 ~/qmk_firmware/keyboards/xelaco/niu_mini/keymaps/xelaco/keymap.c
+badd +24 ~/qmk_firmware/keyboards/xelaco/niu_mini/keymaps/xelaco/keymap.c
 badd +1 ~/qmk_firmware/keyboards/xelaco/pegasushoof/keymaps/xelaco
 badd +1 ~/qmk_firmware/keyboards/xelaco/pegasushoof/config.h
 badd +1 ~/qmk_firmware/keyboards/xelaco/pegasushoof
