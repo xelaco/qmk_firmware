@@ -19,7 +19,7 @@ int xshiftx_state = 0;
 
 enum custom_keycodes
 {
-  CTRL_FN = SAFE_RANGE, XRGBTOG, X_COUL1, X_COUL2, RGBMONO, RGBRNBW, XSHIFTX, XCONTENT, XNICE
+  CTRL_FN = SAFE_RANGE, XRGBTOG, X_COUL1, X_COUL2, RGBMONO, RGBRNBW, ACCENT1, ACCENT2, ACCENT3, XSHIFTX, XCONTENT, XNICE
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
   [LAYER_LEFT] = LAYOUT_ortho_4x12(
       KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,
-      _______, _______, _______, KC_DEL,  _______, KC_CIRC, KC_TILD, _______, KC_LBRC, KC_RBRC, KC_BSLS, KC_GRV,
+      _______, ACCENT3, _______, KC_DEL,  ACCENT1, KC_CIRC, KC_TILD, ACCENT2, KC_LBRC, KC_RBRC, KC_BSLS, KC_GRV,
       _______, _______, _______, XCONTENT,_______, _______, XNICE,   _______, _______, _______, _______, _______,
       _______, XRGBTOG, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
       ),
@@ -68,6 +68,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       if(is_xshiftx_activated && record->event.pressed)
         xshiftx_state = !xshiftx_state;
       return true;
+      break;
+    case ACCENT1:  //é
+      if(record->event.pressed)
+        SEND_STRING(SS_TAP(X_QUOT)"e");
+      return false;
+      break;
+    case ACCENT2:  //è
+      if(record->event.pressed)
+        SEND_STRING(SS_TAP(X_GRV)"e");
+      return false;
+      break;
+    case ACCENT3:  //à
+      if(record->event.pressed)
+        SEND_STRING(SS_TAP(X_GRV)"a");
+      return false;
       break;
     case XCONTENT:
       if(record->event.pressed)
