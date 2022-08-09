@@ -23,6 +23,8 @@ enum custom_keycodes
   CTRL_FN = SAFE_RANGE, XRGBTOG, X_COUL1, X_COUL2, RGBMONO, RGBRNBW, ACCENT0, ACCENT1, ACCENT2, ACCENT3, XSHIFTX, XCONTENT, XNICE
 }; // 0 à | 1 ê | 2 é | 3 è
 
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma clang diagnostic ignored "-Wunknown-attributes"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT_ortho_4x12(
       KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
@@ -184,7 +186,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
           register_code(KC_ENT);
         }
         else
+        {
           register_code(KC_RALT);
+        }
       }
       else{
         unregister_code(KC_RALT);
@@ -202,10 +206,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
           return false;
         }
         else
+        {
           return true;
+        }
       }
       else
+      {
         unregister_code(KC_BSPC);
+      }
       break;
     default:
       return true;

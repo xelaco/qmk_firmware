@@ -35,6 +35,8 @@ enum
    \=================/
    */
 
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma clang diagnostic ignored "-Wunknown-attributes"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KEYMAP(
       A(KC_S),
@@ -45,7 +47,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TG(1),
       CTRL_TAB,
       A(KC_F1)),
-
   KEYMAP(
       C(KC_F17),
       C(KC_F14),
