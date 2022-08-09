@@ -1,14 +1,11 @@
 // cd && cd qmk_firmware/ && qmk flash -kb xelaco/pegasushoof -km xelaco
-// 2021 12 15
+// 2021 08 09
 
 #include QMK_KEYBOARD_H
 
 #define KM_XELQWERTY 0
 #define KM_XELBATTLE 1
 #define KM_XELFN 2
-
-#define XC_ALT A(KC_TAB)
-#define XC_ENT LCTL_T(KC_ENT)
 
 void init_game(void);
 void init_battle_grid(char gr[][3]);
@@ -32,30 +29,50 @@ enum custom_keycodes
      */
 };
 
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma clang diagnostic ignored "-Wunknown-attributes"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [KM_XELQWERTY] = LAYOUT(                                                                                                                                    \
-      KC_ESC,           KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,     KC_PSCR, KC_SLCK, KC_PAUS, \
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,    KC_INS,  KC_HOME, KC_PGUP, \
-      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,    KC_DEL,  KC_END,  KC_PGDN, \
-      MO(2),   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          XC_ENT,                                \
-      KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT,             KC_UP,            \
-      KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, KC_RGUI, TG(1),   KC_RCTL,    KC_LEFT, KC_DOWN, KC_RGHT  \
+  [KM_XELQWERTY] = LAYOUT(
+      KC_ESC,           KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,
+      KC_F10,  KC_F11,  KC_F12,                    KC_PSCR, KC_SLCK, KC_PAUS,
+      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+      KC_MINS, KC_EQL,  KC_BSPC,                   KC_INS,  KC_HOME, KC_PGUP,
+      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+      KC_LBRC, KC_RBRC, KC_BSLS,                   KC_DEL,  KC_END,  KC_PGDN,
+      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
+      KC_QUOT,          KC_ENT,
+      KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,
+      KC_SLSH,          KC_RSFT,                            KC_UP,
+      MO(2),   KC_LGUI, KC_LALT,                            KC_SPC,
+      KC_RALT, KC_RGUI, TG(1),   KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
       ),
-  [KM_XELBATTLE] = LAYOUT(                                                                                                                                    \
-      XELINIT,          BATTLE1, BATTLE2, BATTLE3, BATTLE4, BATTLE5, BATTLE6, BATTLE7, BATTLE8, BATTLE9, _______, _______, XELSHOW,    KC_WH_D, KC_BTN3, KC_WH_U, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    KC_BTN1, KC_MS_U, KC_BTN2, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    KC_MS_L, KC_MS_D, KC_MS_R, \
-      MO(2),   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,                               \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,             _______,          \
-      _______, _______, _______,                            _______,                            _______, _______, TG(1),   _______,    _______, _______, _______  \
+  [KM_XELBATTLE] = LAYOUT(
+      XELINIT,          BATTLE1, BATTLE2, BATTLE3, BATTLE4, BATTLE5, BATTLE6, BATTLE7, BATTLE8, BATTLE9,
+      _______, _______, XELSHOW,                   KC_WH_D, KC_BTN3, KC_WH_U,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______,                   KC_BTN1, KC_MS_U, KC_BTN2,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______,                   KC_MS_L, KC_MS_D, KC_MS_R,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______,          _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______,          _______,                            _______,
+      _______, _______, _______,                            _______,
+      _______, _______, TG(1),   _______,          _______, _______, _______
       ),
-  [KM_XELFN] = LAYOUT(                                                                                                                                        \
-      RESET,            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, KC_CLCK, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,     _______, _______, _______, \
-      _______, C(KC_Q), C(KC_W), C(KC_E), C(KC_R), C(KC_T), C(KC_Y), C(KC_U), C(KC_O), C(KC_P), _______, _______, _______, _______,    _______, _______, _______, \
-      KC_TRNS, C(KC_A), C(KC_S), C(KC_D), C(KC_F), C(KC_G), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_GRV,           _______,                               \
-      _______, _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), C(KC_B), C(KC_N), C(KC_M), _______, _______, _______,          _______,             _______,          \
-      _______, _______, KC_BSPC,                            KC_ENT,                             _______, _______, _______, _______,    _______, _______, _______  \
+  [KM_XELFN] = LAYOUT(
+      RESET,            _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______,                   _______, KC_CLCK, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, KC_DEL,                    _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGUP, _______, _______, _______,
+      _______, _______, _______,                   _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+      KC_GRV,           _______,
+      _______, _______, _______, _______, _______, _______, KC_END,  KC_PGDN, _______, _______, _______,
+      _______,          _______,                            _______,
+      _______, _______, KC_BSPC,                            KC_ENT,
+      KC_TRNS, _______, _______, _______,          _______, _______, _______
       )
 };
 
@@ -142,8 +159,8 @@ void init_game(void)
 {
   if(seed == 0)
   {
-    srandom(timer_read());
-    seed = 1;
+    seed = timer_read();
+    srandom(seed);
   }
   score_player = 0;
   score_computer = 0;
