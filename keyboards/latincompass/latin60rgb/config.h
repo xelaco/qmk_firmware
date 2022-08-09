@@ -17,11 +17,6 @@
 
 /* USB Device descriptor parameter */
 #include "config_common.h"
-#define VENDOR_ID       0x6C63 // "lc" = latincompass
-#define PRODUCT_ID      0x6C69 // "lp" = latin60RGB
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    latincompass
-#define PRODUCT         Latin60RGB
 
 /* key matrix size */
 #define MATRIX_ROWS 5
@@ -46,10 +41,6 @@
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 3
-
-/* disable these deprecated features by default */
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
 
 #ifdef RGB_MATRIX_ENABLE
 #    define RGB_DISABLE_AFTER_TIMEOUT 0 // number of ticks to wait until disabling effects
