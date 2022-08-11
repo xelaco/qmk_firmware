@@ -1,5 +1,5 @@
 // cd && cd qmk_firmware/ && qmk flash -kb xelaco/pegasushoof -km xelaco
-// 2021 08 09
+// 2021 08 11
 
 #include QMK_KEYBOARD_H
 
@@ -65,11 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______,                   _______, KC_CLCK, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, KC_DEL,                    _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGUP, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGUP, _______, _______,
       _______, _______, _______,                   _______, _______, _______,
       _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
       KC_GRV,           _______,
-      _______, _______, _______, _______, _______, _______, KC_END,  KC_PGDN, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, KC_END,  KC_PGDN, _______, _______,
       _______,          _______,                            _______,
       _______, _______, KC_BSPC,                            KC_ENT,
       KC_TRNS, _______, _______, _______,          _______, _______, _______
@@ -93,13 +93,9 @@ uint32_t layer_state_set_user(uint32_t state)
 void led_set_user(uint8_t usb_led)
 {
   if(usb_led & (1 << USB_LED_CAPS_LOCK))
-  {
     ph_caps_led_on();
-  }
   else
-  {
     ph_caps_led_off();
-  }
   return;
 }
 
@@ -179,9 +175,7 @@ void init_battle_grid(char gr[][3])
   for(int i = 0; i < 3; i++)
   {
     for(int j = 0; j < 3; j++)
-    {
       gr[i][j] = '-';
-    }
   }
   generate_boat(gr);
   generate_boat(gr);
@@ -198,15 +192,11 @@ void generate_boat(char gr[][3])
     if(random() % 2)
     {
       if(row + 2 > 3)
-      {
         error = 1;
-      }
       else
       {
         if(gr[row][column] != '-' || gr[row+1][column] != '-')
-        {
           error = 1;
-        }
         if(error == 0)
         {
           gr[row][column] = 'B';
@@ -217,15 +207,11 @@ void generate_boat(char gr[][3])
     else
     {
       if(column + 2 > 3)
-      {
         error = 1;
-      }
       else
       {
         if(gr[row][column] != '-' || gr[row][column+1] != '-')
-        {
           error = 1;
-        }
         if(error == 0)
         {
           gr[row][column] = 'B';
@@ -312,9 +298,7 @@ void atk_player(int square_x, int square_y)
     return;
   }
   if(score_player == 4 || score_computer == 4)
-  {
     show_grid();
-  }
   else if(computer[square_x][square_y] == 'B')
   {
     computer[square_x][square_y] = '!';
@@ -376,17 +360,11 @@ void atk_computer(void)
       column = random() % 3;
     }
     if(row < 0 || row > 2 || column < 0 || column > 2)
-    {
       error++;
-    }
     else if(player[row][column] == '!' || player[row][column] == '@')
-    {
       error++;
-    }
     else
-    {
       error = 0;
-    }
   }while(error);
   switch(player[row][column])
   {
@@ -400,9 +378,7 @@ void atk_computer(void)
       player[row][column] = '@';
       ai_ordi[1]--;
       if(ai_ordi[1] == -3)
-      {
         ai_ordi[0] = -1;
-      }
       break;
   }
   return;
