@@ -1,5 +1,7 @@
-// cd && cd qmk_firmware/ && qmk flash -kb xelaco/pegasushoof -km xelaco
-// 2021 08 11
+/*
+   cd && cd qmk_firmware/ && qmk flash -kb xelaco/pegasushoof -km xelaco
+   */
+// 2021 08 15
 
 #include QMK_KEYBOARD_H
 
@@ -232,8 +234,8 @@ void show_grid(void)
     SEND_STRING("Error: ESC to init!\n");
     return;
   }
-  SEND_STRING("Battleships! (by xelaco *** March - 2019 ***)\n");
-  SEND_STRING("  =============== \n");
+  SEND_STRING("Battleships! (by xelaco * 03/2019)\n" SS_TAP(X_HOME));
+  SEND_STRING("  =============== \n" SS_TAP(X_HOME));
   for(int x = 0; x < 3; x++)
   {
     SEND_STRING(" [ ");
@@ -272,9 +274,9 @@ void show_grid(void)
           break;
       }
     }
-    SEND_STRING("] \n");
+    SEND_STRING("] \n" SS_TAP(X_HOME));
   }
-  SEND_STRING("  =============== \n");
+  SEND_STRING("  =============== \n" SS_TAP(X_HOME));
   if(score_player == 4 && score_computer == 4)
   {
     SEND_STRING("### Draw! ###\n");
@@ -294,7 +296,7 @@ void atk_player(int square_x, int square_y)
 {
   if(player[0][0] == '0')
   {
-    SEND_STRING("Error: ESC to init!\n");
+    show_grid();
     return;
   }
   if(score_player == 4 || score_computer == 4)
