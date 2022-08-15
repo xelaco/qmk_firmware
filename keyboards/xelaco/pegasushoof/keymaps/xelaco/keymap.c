@@ -16,14 +16,15 @@ void show_grid(void);
 void atk_player(int square_x, int square_y);
 void atk_computer(void);
 
+char score_player = 0, score_computer = 0;
 char player[3][3] = {{'0','0','0'},{'0','0','0'},{'0','0','0'}}, computer[3][3] = {{'0','0','0'},{'0','0','0'},{'0','0','0'}};
 int seed = 0;
-char score_player = 0, score_computer = 0;
 int ai_ordi[2] = {-1, 0};
+int is_ctrl_fn_activated = 0;
 
 enum custom_keycodes
 {
-  XELINIT = SAFE_RANGE, BATTLE1, BATTLE2, BATTLE3, BATTLE4, BATTLE5, BATTLE6, BATTLE7, BATTLE8, BATTLE9, XELSHOW
+  XELINIT = SAFE_RANGE, BATTLE1, BATTLE2, BATTLE3, BATTLE4, BATTLE5, BATTLE6, BATTLE7, BATTLE8, BATTLE9, XELSHOW, CTRL_FN
     /* Battleships
      * BATTLE1 | BATTLE2 | BATTLE3
      * BATTLE4 | BATTLE5 | BATTLE6
@@ -41,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_MINS, KC_EQL,  KC_BSPC,                   KC_INS,  KC_HOME, KC_PGUP,
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
       KC_LBRC, KC_RBRC, KC_BSLS,                   KC_DEL,  KC_END,  KC_PGDN,
-      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
+      CTRL_FN, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
       KC_QUOT,          KC_ENT,
       KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,
       KC_SLSH,          KC_RSFT,                            KC_UP,
@@ -148,6 +149,50 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     case BATTLE9:
       if(record->event.pressed)
         atk_player(2, 2);
+      break;
+    case CTRL_FN:
+      if(record->event.pressed)
+      {
+        register_code(KC_LCTL);
+        is_ctrl_fn_activated = 1;
+      }
+      else
+      {
+        unregister_code(KC_LCTL);
+        is_ctrl_fn_activated = 0;
+      }
+      break;
+    case KC_LALT:
+      if(record->event.pressed)
+      {
+        if(is_ctrl_fn_activated)
+        {
+          unregister_code(KC_LCTL);
+          register_code(KC_BSPC);
+          return false;
+        }
+      }
+      else
+      {
+        unregister_code(KC_LALT);
+        unregister_code(KC_BSPC);
+      }
+      break;
+    case KC_SPC:
+      if(record->event.pressed)
+      {
+        if(is_ctrl_fn_activated)
+        {
+          unregister_code(KC_LCTL);
+          register_code(KC_ENT);
+          return false;
+        }
+      }
+      else
+      {
+        unregister_code(KC_SPC);
+        unregister_code(KC_ENT);
+      }
       break;
   }
   return true;
