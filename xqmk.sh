@@ -1,12 +1,19 @@
 #!/bin/bash
+
+function genererBDD () {
+qmk generate-compilation-database
+sed -i -e "s/-mcall-prologues //g" ../../../../../compile_commands.json
+mv ../../../../../compile_commands.json .
+}
+
 cd keyboards/xelaco/pegasushoof/keymaps/xelaco
-qmk generate-compilation-database
-mv ../../../../../compile_commands.json .
+genererBDD
+
 cd ../../../nanoslider/keymaps/xelaco/
-qmk generate-compilation-database
-mv ../../../../../compile_commands.json .
+genererBDD
+
 cd ../../../niu_mini/keymaps/xelaco/
-qmk generate-compilation-database
-mv ../../../../../compile_commands.json .
+genererBDD
+
 cd ../../../../..
 vim -p keyboards/xelaco/pegasushoof/keymaps/xelaco/keymap.c keyboards/xelaco/nanoslider/keymaps/xelaco/keymap.c keyboards/xelaco/niu_mini/keymaps/xelaco/keymap.c
