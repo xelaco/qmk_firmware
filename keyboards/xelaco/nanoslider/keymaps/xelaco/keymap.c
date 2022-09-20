@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       C(KC_F18),
       TG(1),
       C(KC_F13),
-      RESET)
+      QK_BOOT)
 };
 
 void keyboard_post_init_user(void)

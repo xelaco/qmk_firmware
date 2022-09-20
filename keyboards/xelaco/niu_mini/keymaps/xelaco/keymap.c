@@ -1,5 +1,5 @@
 // cd && cd qmk_firmware/ && qmk flash -kb xelaco/niu_mini -km xelaco
-// 2021 12 15
+// 2022 09 20
 
 #include QMK_KEYBOARD_H
 
@@ -9,7 +9,7 @@
 
 #define XC_ENT RSFT_T(KC_ENT)
 #define XC_LSFT LSFT_T(KC_TAB)
-#define XC_QUOT LCTL_T(KC_QUOT)
+#define XC_QUOT RCTL_T(KC_QUOT)
 #define LAYLEFT MO(LAYER_LEFT)
 #define LAYRGHT MO(LAYER_RIGHT)
 
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
       _______, X_COUL1, X_COUL2, RGBMONO, RGBRNBW, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_HOME, KC_PGUP,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_END,  KC_PGDN,
-      _______, XSHIFTX, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET
+      _______, XSHIFTX, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT
       )
 };
 
