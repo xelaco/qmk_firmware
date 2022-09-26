@@ -4,10 +4,12 @@
   "maintainer": "waffle87",
   "diode_direction": "COL2ROW",
   "features": {
-    "bootmagic": true,
-    "extrakey": true,
-    "mousekey": true,
-    "nkro": true,
+    "bootmagic": false,
+    "console": false,
+    "command": false,
+    "extrakey": false,
+    "mousekey": false,
+    "nkro": false,
     "rgb_matrix": true,
     "oled": true
   },
