@@ -1,4 +1,3 @@
 SERIAL_DRIVER = vendor
-WS2812_DRIVER = vendor
 
 SLEEP_LED_ENABLE = no

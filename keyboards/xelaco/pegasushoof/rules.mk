@@ -1,7 +1,3 @@
-MCU = atmega32u2
-
-BOOTLOADER = atmel-dfu
-
 MOUSEKEY_ENABLE = yes
 
 BOOTMAGIC_ENABLE = no
@@ -15,7 +11,5 @@ AUDIO_ENABLE = no
 UNICODE_ENABLE = no
 BLUETOOTH_ENABLE = no
 RGBLIGHT_ENABLE = no
-
-LAYOUTS = tkl_ansi
 
 DEFAULT_FOLDER=xelaco/pegasushoof/2015

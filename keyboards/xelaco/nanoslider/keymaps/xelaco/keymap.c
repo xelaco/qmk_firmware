@@ -1,9 +1,12 @@
 // cd && cd qmk_firmware/ && qmk flash -kb xelaco/nanoslider -km xelaco
 // 2021 12 15
 
-#include "kb.h"
+#include QMK_KEYBOARD_H
 #include "analog.h"
 #include "qmk_midi.h"
+
+#define LAYER_1 0
+#define LAYER_2 1
 
 bool alt_tab_state = false;
 uint16_t alt_tab_timer = 0;
@@ -25,37 +28,17 @@ enum
   XEL_PLAY_NEXT
 };
 
-/*
-   /=================\
-   | [6] (----0----) |
-   |                 |
-   | [7] [5] [1]  -  |
-   |             |8| |
-   | [2] [3] [4]  -  |
-   \=================/
-   */
-
-#pragma GCC diagnostic ignored "-Wunknown-pragmas"
-#pragma clang diagnostic ignored "-Wunknown-attributes"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  KEYMAP(
-      A(KC_S),
-      ALT_TAB,
-      TD(XEL_PLAY_NEXT),
-      C(S(KC_ESC)),
-      XEL_RGB,
-      TG(1),
-      CTRL_TAB,
-      A(KC_F1)),
-  KEYMAP(
-      C(KC_F17),
-      C(KC_F14),
-      C(KC_F15),
-      C(KC_F16),
-      C(KC_F18),
-      TG(1),
-      C(KC_F13),
-      QK_BOOT)
+    [LAYER_1] = LAYOUT(
+        TG(LAYER_2),
+        CTRL_TAB,  XEL_RGB,   A(KC_S),
+        ALT_TAB,   TD(XEL_PLAY_NEXT), C(S(KC_ESC)), A(KC_F1)
+    ),
+    [LAYER_2] = LAYOUT(
+        TG(LAYER_2),
+        C(KC_F13), C(KC_F18), C(KC_F17),
+        C(KC_F14), C(KC_F15), C(KC_F16), QK_BOOT
+    )
 };
 
 void keyboard_post_init_user(void)
@@ -145,9 +128,9 @@ void zoom_slider(void)
     //char str[10];
     //sprintf(str, "%d\n", (int)sqrt(prev_pos)*6/32);
     //send_string(str);
-    SEND_STRING(SS_LCTRL("0"));
+    SEND_STRING(SS_LCTL("0"));
     for(int i = 0; i < (int)sqrt(prev_pos) * 6 / 32; i++)
-      SEND_STRING(SS_LCTRL("+"));
+      SEND_STRING(SS_LCTL("+"));
     slider_timer = timer_read();
   }
 }
@@ -176,7 +159,7 @@ void matrix_scan_user(void)
     zoom_slider();
 }
 
-void play_next_choice(qk_tap_dance_state_t *state, void *user_data)
+void play_next_choice(tap_dance_state_t *state, void *user_data)
 {
   switch(state->count)
   {
@@ -194,7 +177,7 @@ void play_next_choice(qk_tap_dance_state_t *state, void *user_data)
   }
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
   [XEL_PLAY_NEXT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, play_next_choice, NULL),
 };
 

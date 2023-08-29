@@ -37,7 +37,7 @@ enum custom_keycodes
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [KM_XELQWERTY] = LAYOUT(
       KC_ESC,           KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,
-      KC_F10,  KC_F11,  KC_F12,                    KC_PSCR, KC_SLCK, KC_PAUS,
+      KC_F10,  KC_F11,  KC_F12,                    KC_PSCR, KC_SCRL, KC_PAUS,
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
       KC_MINS, KC_EQL,  KC_BSPC,                   KC_INS,  KC_HOME, KC_PGUP,
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
   [KM_XELFN] = LAYOUT(
       QK_BOOT,          _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______,                   _______, KC_CLCK, _______,
+      _______, _______, _______,                   _______, KC_CAPS, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, KC_DEL,                    _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGUP, _______, _______,
@@ -79,27 +79,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       )
 };
 
-uint32_t layer_state_set_user(uint32_t state)
+layer_state_t layer_state_set_user(layer_state_t state)
 {
   switch (biton32(state))
   {
     case KM_XELBATTLE:
-      ph_sclk_led_on();
+      writePin(LED_SCROLL_LOCK_PIN, LED_PIN_ON_STATE);
       break;
     default:
-      ph_sclk_led_off();
+      writePin(LED_SCROLL_LOCK_PIN, !LED_PIN_ON_STATE);
       break;
   }
   return state;
-}
-
-void led_set_user(uint8_t usb_led)
-{
-  if(usb_led & (1 << USB_LED_CAPS_LOCK))
-    ph_caps_led_on();
-  else
-    ph_caps_led_off();
-  return;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -198,8 +189,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   return true;
 }
 
-void init_game(void)
-{
+void init_game(void) {
   if(seed == 0)
   {
     seed = timer_read();
@@ -211,8 +201,8 @@ void init_game(void)
   ai_ordi[1] = 0;
   init_battle_grid(player);
   init_battle_grid(computer);
-  SEND_STRING(SS_LCTRL("a"));
-  SEND_STRING(SS_TAP(X_BSPACE));
+  SEND_STRING(SS_LCTL("a"));
+  SEND_STRING(SS_TAP(X_BSPC));
   SEND_STRING("You can play! F1-F9 to fire! F12 to show grid!\n");
   return;
 }
@@ -272,8 +262,8 @@ void generate_boat(char gr[][3])
 
 void show_grid(void)
 {
-  SEND_STRING(SS_LCTRL("a"));
-  SEND_STRING(SS_TAP(X_BSPACE));
+  SEND_STRING(SS_LCTL("a"));
+  SEND_STRING(SS_TAP(X_BSPC));
   if(player[0][0] == '0')
   {
     SEND_STRING("Error: ESC to init!\n");
