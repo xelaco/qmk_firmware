@@ -1,0 +1,5 @@
+qmk compile -kb bpiphany/pegasushoof/2015 -km xelaco
+qmk compile -kb keebwerk/nano_slider -km xelaco
+qmk compile -kb kbdfans/niu_mini -km xelaco
+qmk compile -kb boardsource/lulu/rp2040 -km xelaco
+qmk compile -kb boardsource/equals/48 -km xelaco
