@@ -8,6 +8,10 @@
 
 #define AUDIO_INIT_DELAY
 
+#ifdef AUDIO_ENABLE
+# define STARTUP_SONG SONG(XEL_MUSIC_STARTUP)
+#endif
+
 // SPI Configuration
 #define SPI_DRIVER SPID1
 #define SPI_SCK_PIN GP26
